@@ -51,7 +51,7 @@ python src/data/database.py
 ### Paso 6: Iniciar la aplicación
 
 ```bash
-uvicorn src.main:app --reload
+fastapi dev main.py
 ```
 
 La aplicación estará disponible en `http://127.0.0.1:8000`.
@@ -70,7 +70,3 @@ Accede a `http://127.0.0.1:8000/users` para ver una lista de usuarios.
 ## Contribución
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request.
-
-## Licencia
-
-Este proyecto está licenciado bajo la [MIT License](LICENSE).
