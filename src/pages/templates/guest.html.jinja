@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %} - Mi CRUD</title>
+    {% endblock %}
+</head>
+<body class="bg-gray-100 flex flex-col h-screen">
+    {% include "components/navbar.html.jinja" %}
+    <main id="content" class="container mx-auto py-8 flex-1">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer id="footer" class="bg-blue-500 text-white py-4 text-center">
+        &copy; Copyright {{ current_year }} by Eso Tilin
+    </footer>
+</body>
+</html>

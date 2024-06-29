@@ -1,0 +1,58 @@
+{% extends "templates/guest.html.jinja" %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow-md rounded-lg p-6">
+    <div class="flex gap-5 items-center mb-4">
+        <h1 class="text-2xl font-bold">Users List</h1>
+        <a href="/users/create" class="bg-blue-500 text-white py-1 px-4 rounded text-sm">Nuevo</a>
+    </div>
+    {% if users %}
+        {% if users|length > 0 %}
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">ID</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Matricula</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Nombre</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Apellidos</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Correo</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Contacto</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Cuatrimestre</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Rol</th>
+                        <th class="py-2 px-4 text-left border-b-2 border-gray-300">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.id }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">
+                                <a class="hover:underline" href="/users/{{ user.id }}">{{ user.enrollment_number }}</a>
+                            </td>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.firstname }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.lastname }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.email }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.contact }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.cuatri }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">{{ user.role }}</td>
+                            <td class="py-2 px-4 border-b border-gray-300">
+                                <a href="/users/{{ user.id }}/edit" class="text-blue-500 hover:text-blue-700 mr-2">Editar</a> |
+                                <form action="/users/{{ user.id }}/delete" method="post" class="inline">
+                                    <input type="hidden" name="method" value="delete">
+                                    <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-gray-700">No users found.</p>
+        {% endif %}
+    {% else %}
+        <p class="text-gray-700">No users found.</p>
+    {% endif %}
+</div>
+{% endblock %}
